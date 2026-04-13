@@ -23,7 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* --- Falling Petals --- */
         .petal-container {
             position: fixed;
             top: 0;
@@ -54,7 +53,6 @@
             }
         }
 
-        /* --- Heart Burst Effect --- */
         .heart-burst {
             position: fixed;
             top: 50%;
@@ -80,7 +78,6 @@
             }
         }
 
-        /* --- Intro Screen --- */
         #intro {
             position: fixed;
             inset: 0;
@@ -134,7 +131,6 @@
             50% { transform: scale(1.03); }
         }
 
-        /* --- Slideshow --- */
         #show {
             display: none;
         }
@@ -164,15 +160,6 @@
                 opacity: 1;
                 transform: translateY(0) scale(1);
             }
-        }
-
-        .slide-bg {
-            position: absolute;
-            inset: 0;
-            background-size: cover;
-            background-position: center 30%;
-            filter: brightness(0.28) saturate(1.2);
-            z-index: 0;
         }
 
         .slide-vignette {
@@ -254,7 +241,6 @@
             56% { transform: scale(1); }
         }
 
-        /* --- Navigation --- */
         #progress {
             position: fixed;
             top: 0;
@@ -303,7 +289,6 @@
             text-align: center;
         }
 
-        /* Stars background */
         .stars {
             position: absolute;
             inset: 0;
@@ -338,7 +323,6 @@
     <div id="heart-burst" class="heart-burst"></div>
     <div id="progress"></div>
 
-    <!-- Intro Screen -->
     <div id="intro">
         <div class="stars" id="introStars"></div>
         <div style="position:relative; z-index:2;">
@@ -349,9 +333,8 @@
         </div>
     </div>
 
-    <!-- Main Slideshow (19 Slides - Images 1 to 14 used in Slides 2-15) -->
     <div id="show">
-        <!-- Slide 1 - Text only (No Image) -->
+        <!-- Slide 1 -->
         <div class="slide active">
             <div class="stars"></div>
             <div class="slide-vignette"></div>
@@ -364,175 +347,175 @@
             </div>
         </div>
 
-        <!-- Slide 2 - Image 1 -->
+        <!-- Slide 2 -->
         <div class="slide">
             <div class="stars"></div>
             <div class="slide-vignette"></div>
             <div class="slide-content">
-                <div class="photo-wrap"><img src="image1.jpg" alt="First Glimpse"></div>
+                <div class="photo-wrap"><img src="images/image1.jpg" alt="First Glimpse"></div>
                 <p class="chapter">✦ Chapter One ✦</p>
                 <h1 class="slide-title">The First Glimpse</h1>
                 <p class="slide-text">The first time I saw you…<br>was on a Google Meet call 💻<br>Among so many faces…<br><em>my eyes stopped at you…</em><br>and something in my heart quietly said…<br><em>"She is special"</em> 🥺</p>
             </div>
         </div>
 
-        <!-- Slide 3 - Image 2 -->
+        <!-- Slide 3 -->
         <div class="slide">
             <div class="stars"></div>
             <div class="slide-vignette"></div>
             <div class="slide-content">
-                <div class="photo-wrap"><img src="image2.jpg" alt="Butterflies"></div>
+                <div class="photo-wrap"><img src="images/image2.jpg" alt="Butterflies"></div>
                 <p class="chapter">✦ Chapter Two ✦</p>
                 <h1 class="slide-title">Butterflies & Wishes</h1>
                 <p class="slide-text">Every message from you made my heart race.<br>I’d wait for your name to pop up on my screen,<br>and the world felt brighter. ✨</p>
             </div>
         </div>
 
-        <!-- Slide 4 - Image 3 -->
+        <!-- Slide 4 -->
         <div class="slide">
             <div class="stars"></div>
             <div class="slide-vignette"></div>
             <div class="slide-content">
-                <div class="photo-wrap"><img src="image3.jpg" alt="Sunset Love"></div>
+                <div class="photo-wrap"><img src="images/image3.jpg" alt="Sunset Love"></div>
                 <p class="chapter">✦ Chapter Three ✦</p>
                 <h1 class="slide-title">Falling Deeper</h1>
                 <p class="slide-text">Day by day, you became my favorite thought,<br>my reason to smile, my peace in chaos.<br>I didn’t just fall for you —<br>I <em>ran</em> towards you. 🏃‍♂️💨</p>
             </div>
         </div>
 
-        <!-- Slide 5 - Image 4 -->
+        <!-- Slide 5 -->
         <div class="slide">
             <div class="stars"></div>
             <div class="slide-vignette"></div>
             <div class="slide-content">
-                <div class="photo-wrap"><img src="image4.jpg" alt="Couple Silhouette"></div>
+                <div class="photo-wrap"><img src="images/image4.jpg" alt="Couple Silhouette"></div>
                 <p class="chapter">✦ Eternally Yours ✦</p>
                 <h1 class="slide-title">Now & Forever</h1>
                 <p class="slide-text">You are my today and all of my tomorrows.<br>Every moment with you is a treasure.<br><em>I love you more than words can ever say.</em> 💕</p>
             </div>
         </div>
 
-        <!-- Slide 6 - Image 5 -->
+        <!-- Slide 6 -->
         <div class="slide">
             <div class="stars"></div>
             <div class="slide-vignette"></div>
             <div class="slide-content">
-                <div class="photo-wrap"><img src="image5.jpg" alt="Starry Night"></div>
+                <div class="photo-wrap"><img src="images/image5.jpg" alt="Starry Night"></div>
                 <p class="chapter">✦ Chapter Four ✦</p>
                 <h1 class="slide-title">Starry Nights & Deep Talks</h1>
                 <p class="slide-text">Late night calls, silly laughs,<br>sharing dreams under the same moon.<br>Those nights became my favorite lullaby. 🌙</p>
             </div>
         </div>
 
-        <!-- Slide 7 - Image 6 -->
+        <!-- Slide 7 -->
         <div class="slide">
             <div class="stars"></div>
             <div class="slide-vignette"></div>
             <div class="slide-content">
-                <div class="photo-wrap"><img src="image6.jpg" alt="Hand Hold"></div>
+                <div class="photo-wrap"><img src="images/image6.jpg" alt="Hand Hold"></div>
                 <p class="chapter">✦ Chapter Five ✦</p>
                 <h1 class="slide-title">A Thousand Miles Apart</h1>
                 <p class="slide-text">Distance couldn't dim the spark.<br>Every video call felt like home,<br>every "good morning" made my day complete. 💻❤️</p>
             </div>
         </div>
 
-        <!-- Slide 8 - Image 7 -->
+        <!-- Slide 8 -->
         <div class="slide">
             <div class="stars"></div>
             <div class="slide-vignette"></div>
             <div class="slide-content">
-                <div class="photo-wrap"><img src="image7.jpg" alt="Promise"></div>
+                <div class="photo-wrap"><img src="images/image7.jpg" alt="Promise"></div>
                 <p class="chapter">✦ Chapter Six ✦</p>
                 <h1 class="slide-title">The Promise</h1>
                 <p class="slide-text">No matter the miles, my heart belongs to you.<br>I promise to always choose you,<br>to hold your hand through every storm. 🤞💖</p>
             </div>
         </div>
 
-        <!-- Slide 9 - Image 8 -->
+        <!-- Slide 9 -->
         <div class="slide">
             <div class="stars"></div>
             <div class="slide-vignette"></div>
             <div class="slide-content">
-                <div class="photo-wrap"><img src="image8.jpg" alt="Laughter"></div>
+                <div class="photo-wrap"><img src="images/image8.jpg" alt="Laughter"></div>
                 <p class="chapter">✦ Chapter Seven ✦</p>
                 <h1 class="slide-title">Your Laughter, My Sunshine</h1>
                 <p class="slide-text">Your smile lights up my darkest days.<br>That laugh? It's my favorite melody.<br>Keep smiling, my love. ☀️😊</p>
             </div>
         </div>
 
-        <!-- Slide 10 - Image 9 -->
+        <!-- Slide 10 -->
         <div class="slide">
             <div class="stars"></div>
             <div class="slide-vignette"></div>
             <div class="slide-content">
-                <div class="photo-wrap"><img src="image9.jpg" alt="Candle"></div>
+                <div class="photo-wrap"><img src="images/image9.jpg" alt="Candle"></div>
                 <p class="chapter">✦ Chapter Eight ✦</p>
                 <h1 class="slide-title">On Your Birthday</h1>
                 <p class="slide-text">Today, the world celebrates you,<br>but I celebrate the miracle that is you.<br>You make life beautiful. 🎂🕯️</p>
             </div>
         </div>
 
-        <!-- Slide 11 - Image 10 -->
+        <!-- Slide 11 -->
         <div class="slide">
             <div class="stars"></div>
             <div class="slide-vignette"></div>
             <div class="slide-content">
-                <div class="photo-wrap"><img src="image10.jpg" alt="Couple Dancing"></div>
+                <div class="photo-wrap"><img src="images/image10.jpg" alt="Couple Dancing"></div>
                 <p class="chapter">✦ Chapter Nine ✦</p>
                 <h1 class="slide-title">Dancing in the Dark</h1>
                 <p class="slide-text">I imagine holding you close,<br>slow dancing under fairy lights.<br>Someday soon, my love. 💃🕺</p>
             </div>
         </div>
 
-        <!-- Slide 12 - Image 11 -->
+        <!-- Slide 12 -->
         <div class="slide">
             <div class="stars"></div>
             <div class="slide-vignette"></div>
             <div class="slide-content">
-                <div class="photo-wrap"><img src="image11.jpg" alt="Forever"></div>
+                <div class="photo-wrap"><img src="images/image11.jpg" alt="Forever"></div>
                 <p class="chapter">✦ Chapter Ten ✦</p>
                 <h1 class="slide-title">Forever Starts Now</h1>
                 <p class="slide-text">With every beat of my heart,<br>I fall for you all over again.<br>This is just the beginning of our forever. 💍</p>
             </div>
         </div>
 
-        <!-- Slide 13 - Image 12 -->
+        <!-- Slide 13 -->
         <div class="slide">
             <div class="stars"></div>
             <div class="slide-vignette"></div>
             <div class="slide-content">
-                <div class="photo-wrap"><img src="image12.jpg" alt="Coffee"></div>
+                <div class="photo-wrap"><img src="images/image12.jpg" alt="Coffee"></div>
                 <p class="chapter">✦ Little Things ✦</p>
                 <h1 class="slide-title">The Little Things</h1>
                 <p class="slide-text">The way you say my name,<br>your random texts, your caring heart.<br>It's the little things that made me yours. ☕💌</p>
             </div>
         </div>
 
-        <!-- Slide 14 - Image 13 -->
+        <!-- Slide 14 -->
         <div class="slide">
             <div class="stars"></div>
             <div class="slide-vignette"></div>
             <div class="slide-content">
-                <div class="photo-wrap"><img src="image13.jpg" alt="Rain"></div>
+                <div class="photo-wrap"><img src="images/image13.jpg" alt="Rain"></div>
                 <p class="chapter">✦ Chapter Eleven ✦</p>
                 <h1 class="slide-title">Rain or Shine</h1>
                 <p class="slide-text">Through storms and sunshine,<br>through joy and tears,<br>I will always be right here. ☔🌤️</p>
             </div>
         </div>
 
-        <!-- Slide 15 - Image 14 -->
+        <!-- Slide 15 -->
         <div class="slide">
             <div class="stars"></div>
             <div class="slide-vignette"></div>
             <div class="slide-content">
-                <div class="photo-wrap"><img src="image14.jpg" alt="Soulmate"></div>
+                <div class="photo-wrap"><img src="images/image14.jpg" alt="Soulmate"></div>
                 <p class="chapter">✦ Chapter Twelve ✦</p>
                 <h1 class="slide-title">Soulmate</h1>
                 <p class="slide-text">You're not just my love,<br>you're my best friend, my anchor,<br>my favorite hello and hardest goodbye. 💑</p>
             </div>
         </div>
 
-        <!-- Slide 16 - Text only (No Image) -->
+        <!-- Slide 16 -->
         <div class="slide">
             <div class="stars"></div>
             <div class="slide-vignette"></div>
@@ -568,7 +551,7 @@
             </div>
         </div>
 
-        <!-- Slide 19 - Finale (Text only) -->
+        <!-- Slide 19 -->
         <div class="slide">
             <div class="stars"></div>
             <div class="slide-vignette"></div>
@@ -589,7 +572,6 @@
     </div>
 
     <script>
-        // Petal generator
         function createPetal() {
             const petalContainer = document.getElementById('petals');
             const petal = document.createElement('div');
@@ -605,7 +587,6 @@
         }
         setInterval(createPetal, 400);
 
-        // Stars generator
         function generateStars(containerId) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -624,7 +605,6 @@
         generateStars('introStars');
         document.querySelectorAll('.slide .stars').forEach(el => generateStars(el.id || 'temp'));
 
-        // Heart burst
         function burstHearts() {
             const burstDiv = document.getElementById('heart-burst');
             for (let i = 0; i < 20; i++) {
@@ -645,7 +625,6 @@
             }
         }
 
-        // Slideshow logic
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
@@ -682,7 +661,6 @@
             }, 1000);
         };
 
-        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (document.getElementById('intro').style.display === 'none') {
                 if (e.key === 'ArrowLeft') changeSlide(-1);
