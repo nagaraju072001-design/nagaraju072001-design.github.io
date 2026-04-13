@@ -14,7 +14,7 @@ body {
     text-align: center;
 }
 
-/* Background slideshow (USE YOUR IMAGES) */
+/* Romantic Background using YOUR images */
 .bg {
     position: fixed;
     width: 100%;
@@ -26,20 +26,22 @@ body {
 }
 
 @keyframes bgChange {
-    0% {background-image: url('images/bg1.jpg');}
-    25% {background-image: url('images/bg2.jpg');}
-    50% {background-image: url('images/bg3.jpg');}
-    75% {background-image: url('images/bg4.jpg');}
-    100% {background-image: url('images/bg1.jpg');}
+    0% {background-image: url('IMG_20260301_110618.jpg');}
+    25% {background-image: url('IMG_20260219_120312.jpg');}
+    50% {background-image: url('IMG_20250914_102750.jpg');}
+    75% {background-image: url('IMG_20250626_155334.jpg');}
+    100% {background-image: url('IMG_20260301_110618.jpg');}
 }
 
+/* Dark overlay for romantic feel */
 .overlay {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.55);
 }
 
+/* Slides */
 .slide {
     position: absolute;
     width: 100%;
@@ -56,6 +58,7 @@ body {
     animation: fade 2s;
 }
 
+/* Image styling */
 img {
     width: 260px;
     height: 260px;
@@ -70,9 +73,11 @@ h1 {
 
 p {
     font-size: 24px;
-    max-width: 600px;
+    max-width: 650px;
+    line-height: 1.5;
 }
 
+/* Animation */
 @keyframes fade {
     from {opacity: 0;}
     to {opacity: 1;}
@@ -95,105 +100,133 @@ style="position:absolute;top:20px;right:20px;padding:10px;background:pink;color:
 Play Music ❤️
 </button>
 
-<!-- STORY -->
+<!-- STORY START -->
 
 <div class="slide active">
     <h1>Our Story ❤️</h1>
-    <p>This is not just a birthday… it’s a story of us… a story I will never forget 💖</p>
+    <p>This is not just your birthday…  
+    this is our story…  
+    the most beautiful part of my life 💖</p>
 </div>
 
 <div class="slide">
-    <p>The first time I saw you… was on a Google Meet onboarding call 💻</p>
+    <p>The first time I saw you…  
+    was on a Google Meet onboarding call 💻</p>
 </div>
 
 <div class="slide">
-    <p>Among everyone… my eyes stopped at you… and I felt something special 🥺</p>
+    <p>Among so many faces…  
+    my eyes stopped at you…  
+    and something in my heart quietly said… “she is special” 🥺</p>
 </div>
 
 <div class="slide">
-    <p>I didn’t know then… you would become my whole world ❤️</p>
+    <p>I didn’t know then…  
+    you would become my happiness… my peace… my everything ❤️</p>
 </div>
 
 <div class="slide">
-    <p>Our first picture together… Independence Day 🇮🇳❤️</p>
+    <p>Then came that beautiful day…  
+    our first picture together… Independence Day 🇮🇳❤️</p>
 </div>
 
 <div class="slide">
-    <img src="images/independence.jpg">
-    <p>Our first memory… forever special 💖</p>
+    <img src="IMG_20240815_101324.jpg">
+    <p>The beginning of “us”… a moment I will never forget 💖</p>
 </div>
 
 <div class="slide">
-    <p>We were living in the same place… life brought us closer ❤️</p>
+    <p>And life surprised me again…  
+    we were living in the same place ❤️</p>
 </div>
 
 <div class="slide">
-    <p>Every metro ride together… became my happiest moments 🚇💕</p>
+    <p>Every evening after office…  
+    those metro rides together 🚇  
+    became the best part of my day 💕</p>
 </div>
 
 <div class="slide">
-    <p>Slowly… we started liking each other ❤️</p>
+    <p>Slowly… without even realizing…  
+    we started falling for each other ❤️</p>
 </div>
 
 <div class="slide">
-    <p>That one moment… when I kissed you 💋… changed everything 💖</p>
+    <p>And that one moment…  
+    when I kissed you 💋  
+    everything changed… in the most beautiful way 💖</p>
 </div>
 
 <div class="slide">
-    <p>From then… we became “us” ❤️</p>
+    <p>From that moment…  
+    we were no longer just two people…  
+    we became “US” ❤️</p>
 </div>
 
 <!-- MEMORY SLIDES -->
+
 <script>
 let memories = [
-"IMG_20240815_101324.jpg",
-"IMG_20241126_160145.jpg",
-"IMG_20250626_155334.jpg",
-"IMG_20250914_102750.jpg",
-"IMG_20260219_120312.jpg",
-"IMG_20260301_110618.jpg"
+{img:"IMG_20241126_160145.jpg", text:"That smile of yours… is my peace ❤️"},
+{img:"IMG_20250626_155334.jpg", text:"Every moment with you feels like magic ✨"},
+{img:"IMG_20250914_102750.jpg", text:"Holding you is my favorite place 💕"},
+{img:"IMG_20260219_120312.jpg", text:"You are my happiness in every life 💖"},
+{img:"IMG_20260301_110618.jpg", text:"With you… everything feels complete ❤️"},
+{img:"IMG-20260219-WA0003.jpg", text:"You + Me = Forever 🥺❤️"}
 ];
 
-memories.forEach(src => {
+memories.forEach(item => {
     let div = document.createElement("div");
     div.className = "slide";
     div.innerHTML = `
-    <img src="${src}">
-    <p>Every moment with you… is a memory I’ll cherish forever ❤️</p>
+    <img src="${item.img}">
+    <p>${item.text}</p>
     `;
     document.body.appendChild(div);
 });
 </script>
 
 <!-- EMOTIONAL PART -->
+
 <div class="slide">
-    <p>But life changed… I had to leave for my future 🎓</p>
+    <p>But life had other plans…  
+    I had to leave… not because I wanted to…  
+    but to build our future 🎓</p>
 </div>
 
 <div class="slide">
-    <p>It wasn’t just leaving a job… it felt like leaving you 💔</p>
+    <p>The hardest part wasn’t leaving my job…  
+    it was leaving you…  
+    every goodbye hurt more than anything 💔</p>
 </div>
 
 <div class="slide">
-    <p>We fought… we cried… but it’s only because we love deeply 🥺</p>
+    <p>We fought… we cried…  
+    but it’s only because our love is real…  
+    and deep 🥺</p>
 </div>
 
 <div class="slide">
-    <p>No distance can ever change what I feel for you ❤️</p>
+    <p>No distance… no time…  
+    nothing in this world can change  
+    how much I love you ❤️</p>
 </div>
 
 <!-- FINAL -->
+
 <div class="slide">
     <h1>Happy Birthday My Love ❤️</h1>
-    <p>You are my everything 💖</p>
+    <p>You are the best thing that ever happened to me 💖</p>
 </div>
 
 <div class="slide">
     <h1>I Love You Forever ❤️</h1>
-    <p>One day… we will be together again 🥺💍</p>
+    <p>One day… we will be together again…  
+    stronger… forever… 💍🥺</p>
 </div>
 
 <!-- SLIDE CONTROL -->
+
 <script>
 let slides = document.querySelectorAll(".slide");
 let index = 0;
