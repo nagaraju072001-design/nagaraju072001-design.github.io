@@ -1,293 +1,776 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday My Love ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Happy Birthday My Love 💖</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
 
-<style>
-body {
-    margin: 0;
-    overflow: hidden;
-    font-family: 'Segoe UI', sans-serif;
-    color: white;
-    text-align: center;
-}
+        body {
+            background: #130810;
+            font-family: 'Cormorant Garamond', serif;
+            color: white;
+            overflow-x: hidden;
+        }
 
-/* BACKGROUND SLIDESHOW (ALL IMAGES, NO REPEAT) */
-.bg {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
-    transition: background-image 2s ease-in-out;
-}
+        /* --- Falling Petals --- */
+        .petal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
 
-/* Overlay */
-.overlay {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-}
+        .petal {
+            position: absolute;
+            top: -40px;
+            animation: fall linear infinite;
+            opacity: 0.8;
+            font-size: 1.4rem;
+        }
 
-/* Slides */
-.slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
-}
+        @keyframes fall {
+            0% {
+                transform: translateY(-40px) rotate(0deg) translateX(0);
+                opacity: 0.9;
+            }
 
-.active {
-    display: flex;
-    animation: fade 1.5s;
-}
+            100% {
+                transform: translateY(110vh) rotate(720deg) translateX(80px);
+                opacity: 0;
+            }
+        }
 
-/* IMAGE FIX (NO ROTATION ISSUE) */
-img {
-    max-width: 85%;
-    max-height: 65%;
-    border-radius: 20px;
-    object-fit: contain;
-    box-shadow: 0 0 25px pink;
-}
+        /* --- Heart Burst Effect --- */
+        .heart-burst {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            pointer-events: none;
+            z-index: 9998;
+        }
 
-/* Text */
-h1 { color: #ff4d6d; }
+        .heart-particle {
+            position: absolute;
+            animation: burst 1.5s ease-out forwards;
+            font-size: 1.8rem;
+        }
 
-p {
-    font-size: 24px;
-    max-width: 700px;
-    line-height: 1.6;
-}
+        @keyframes burst {
+            0% {
+                transform: translate(0, 0) scale(0.3);
+                opacity: 1;
+            }
 
-@keyframes fade {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-    /* 💓 HEARTS */
-.hearts {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(1.5);
+                opacity: 0;
+            }
+        }
 
-.hearts::before,
-.hearts::after {
-    content: "💖 💕 ❤️ 💓 💗 💘";
-    position: absolute;
-    font-size: 24px;
-    animation: floatHearts 10s linear infinite;
-    opacity: 0.7;
-}
+        /* --- Intro Screen --- */
+        #intro {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at center, #2d0a1a 0%, #130810 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 1.5s ease;
+            text-align: center;
+            padding: 2rem;
+        }
 
-.hearts::after {
-    left: 50%;
-    animation-delay: 5s;
-}
+        #intro h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.5rem, 10vw, 5.5rem);
+            color: #e8326a;
+            text-shadow: 0 0 60px rgba(232, 50, 106, 0.8);
+            animation: pulse 2s ease-in-out infinite;
+        }
 
-@keyframes floatHearts {
-    0% { transform: translateY(100vh); }
-    100% { transform: translateY(-10vh); }
-}
+        #intro p {
+            font-style: italic;
+            font-size: 1.4rem;
+            color: #ffd6e7;
+            margin-top: 1rem;
+        }
 
-/* 🎈 BALLOONS */
-.balloons {
-    position: fixed;
-    bottom: -100px;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    pointer-events: none;
-}
+        #startBtn {
+            margin-top: 2.5rem;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, #e8326a, #c01f55);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            cursor: pointer;
+            box-shadow: 0 0 40px rgba(232, 50, 106, 0.6);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-.balloon {
-    width: 50px;
-    height: 70px;
-    background: pink;
-    border-radius: 50%;
-    animation: floatBalloon 12s infinite ease-in;
-}
+        #startBtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px rgba(232, 50, 106, 1);
+        }
 
-.balloon:nth-child(2) { background: red; animation-delay: 2s; }
-.balloon:nth-child(3) { background: purple; animation-delay: 4s; }
-.balloon:nth-child(4) { background: hotpink; animation-delay: 6s; }
+        @keyframes pulse {
 
-@keyframes floatBalloon {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-120vh); }
-}
+            0%,
+            100% {
+                transform: scale(1);
+            }
 
-/* 🎂 CAKE */
-.cake {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 40px;
-    animation: bounce 2s infinite;
-}
+            50% {
+                transform: scale(1.03);
+            }
+        }
 
-@keyframes bounce {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-</style>
+        /* --- Slideshow --- */
+        #show {
+            display: none;
+        }
+
+        .slide {
+            display: none;
+            min-height: 100vh;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 4rem 1.5rem 6rem;
+            text-align: center;
+        }
+
+        .slide.active {
+            display: flex;
+            animation: fadeSlide 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1) both;
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.96);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .slide-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center 30%;
+            filter: brightness(0.28) saturate(1.2);
+            z-index: 0;
+        }
+
+        .slide-vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(19, 8, 16, 0.3) 0%, rgba(19, 8, 16, 0.9) 100%);
+            z-index: 1;
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            max-width: 720px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .photo-wrap img {
+            width: clamp(240px, 50vw, 360px);
+            height: clamp(240px, 50vw, 360px);
+            object-fit: cover;
+            border-radius: 28px;
+            box-shadow: 0 0 0 4px rgba(232, 50, 106, 0.5), 0 20px 40px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+
+        .chapter {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1rem;
+            color: #d4a843;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .slide-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2rem, 7vw, 3.8rem);
+            color: #e8326a;
+            text-shadow: 0 0 20px rgba(232, 50, 106, 0.5);
+        }
+
+        .slide-text {
+            font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+            line-height: 1.6;
+            color: rgba(255, 240, 248, 0.95);
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            width: 80%;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(232, 50, 106, 0.6), transparent);
+        }
+
+        .big-heart {
+            font-size: 4.5rem;
+            animation: heartBeat 1.4s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px #e8326a);
+        }
+
+        @keyframes heartBeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            14% {
+                transform: scale(1.2);
+            }
+
+            28% {
+                transform: scale(1);
+            }
+
+            42% {
+                transform: scale(1.1);
+            }
+
+            56% {
+                transform: scale(1);
+            }
+        }
+
+        /* --- Navigation --- */
+        #progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #e8326a, #d4a843);
+            z-index: 5000;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 12px #e8326a;
+        }
+
+        #nav {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.8rem;
+            z-index: 5000;
+            background: rgba(19, 8, 16, 0.7);
+            backdrop-filter: blur(12px);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            border: 1px solid rgba(232, 50, 106, 0.4);
+        }
+
+        #nav button {
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: rgba(255, 200, 220, 0.7);
+            transition: 0.2s;
+            padding: 0 0.5rem;
+        }
+
+        #nav button:hover {
+            color: #e8326a;
+            transform: scale(1.2);
+        }
+
+        #slideCounter {
+            font-size: 0.9rem;
+            color: rgba(255, 200, 220, 0.7);
+            min-width: 60px;
+            text-align: center;
+        }
+
+        /* Stars background */
+        .stars {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Floating Hearts -->
-<div class="hearts"></div>
 
-<!-- Balloons -->
-<div class="balloons">
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-</div>
+    <div class="petal-container" id="petals"></div>
+    <div id="heart-burst" class="heart-burst"></div>
+    <div id="progress"></div>
 
-<!-- Cake -->
-<div class="cake">🎂</div>
+    <!-- Intro Screen -->
+    <div id="intro">
+        <div class="stars" id="introStars"></div>
+        <div style="position:relative; z-index:2;">
+            <span class="big-heart">💖</span>
+            <h1>Happy Birthday<br>My Love</h1>
+            <p>A love story written just for you…</p>
+            <button id="startBtn" onclick="startShow()">Open Your Gift ❤️</button>
+        </div>
+    </div>
 
-<div class="bg" id="bg"></div>
-<div class="overlay"></div>
+    <!-- Main Slideshow (All 19 Slides, Images Fixed, No Music) -->
+    <div id="show">
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <span class="big-heart">💖</span>
+                <p class="chapter">✦ Our Story ✦</p>
+                <h1 class="slide-title">Happy Birthday<br>My Everything</h1>
+                <div class="divider"><span>🌹</span></div>
+                <p class="slide-text">This is not just your birthday…<br>this is <em>our story</em>…<br>the most
+                    beautiful part of my life 💖</p>
+            </div>
+        </div>
 
-<!-- MUSIC -->
-<audio id="music" loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
-</audio>
+        <!-- Slide 2 -->
+        <div class="slide">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <div class="photo-wrap"><img
+                        src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="First Glimpse"></div>
+                <p class="chapter">✦ Chapter One ✦</p>
+                <h1 class="slide-title">The First Glimpse</h1>
+                <p class="slide-text">The first time I saw you…<br>was on a Google Meet call 💻<br>Among so many
+                    faces…<br><em>my eyes stopped at you…</em><br>and something in my heart quietly said…<br><em>"She is
+                        special"</em> 🥺</p>
+            </div>
+        </div>
 
-<button onclick="document.getElementById('music').play()" 
-style="position:absolute;top:20px;right:20px;padding:10px;background:pink;color:white;border:none;border-radius:10px;">
-Play Music ❤️
-</button>
+        <!-- Slide 3 -->
+        <div class="slide">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <div class="photo-wrap"><img
+                        src="https://images.pexels.com/photos/896888/pexels-photo-896888.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Butterflies"></div>
+                <p class="chapter">✦ Chapter Two ✦</p>
+                <h1 class="slide-title">Butterflies & Wishes</h1>
+                <p class="slide-text">Every message from you made my heart race.<br>I’d wait for your name to pop up on
+                    my screen,<br>and the world felt brighter. ✨</p>
+            </div>
+        </div>
 
-<!-- 🎂 START -->
+        <!-- Slide 4 -->
+        <div class="slide">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <div class="photo-wrap"><img
+                        src="https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Sunset Love"></div>
+                <p class="chapter">✦ Chapter Three ✦</p>
+                <h1 class="slide-title">Falling Deeper</h1>
+                <p class="slide-text">Day by day, you became my favorite thought,<br>my reason to smile, my peace in
+                    chaos.<br>I didn’t just fall for you —<br>I <em>ran</em> towards you. 🏃‍♂️💨</p>
+            </div>
+        </div>
 
-<div class="slide active">
-    <h1>🎂 Happy Birthday My Love ❤️</h1>
-    <p>You are my happiness… my peace… my everything 💖</p>
-</div>
+        <!-- Slide 5 -->
+        <div class="slide">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <div class="photo-wrap"><img
+                        src="https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Couple Silhouette"></div>
+                <p class="chapter">✦ Eternally Yours ✦</p>
+                <h1 class="slide-title">Now & Forever</h1>
+                <p class="slide-text">You are my today and all of my tomorrows.<br>Every moment with you is a
+                    treasure.<br><em>I love you more than words can ever say.</em> 💕</p>
+            </div>
+        </div>
 
-<div class="slide">
-    <p>The first time I saw you…  
-    I didn’t know you would become my whole world ❤️</p>
-</div>
+        <!-- Slide 6 -->
+        <div class="slide">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <div class="photo-wrap"><img
+                        src="https://images.pexels.com/photos/1428620/pexels-photo-1428620.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Starry Night"></div>
+                <p class="chapter">✦ Chapter Four ✦</p>
+                <h1 class="slide-title">Starry Nights & Deep Talks</h1>
+                <p class="slide-text">Late night calls, silly laughs,<br>sharing dreams under the same moon.<br>Those
+                    nights became my favorite lullaby. 🌙</p>
+            </div>
+        </div>
 
-<div class="slide">
-    <img src="IMG_20240815_101324.jpg">
-    <p>Our first memory together 🇮🇳💖</p>
-</div>
+        <!-- Slide 7 -->
+        <div class="slide">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <div class="photo-wrap"><img
+                        src="https://images.pexels.com/photos/1209651/pexels-photo-1209651.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Hand Hold"></div>
+                <p class="chapter">✦ Chapter Five ✦</p>
+                <h1 class="slide-title">A Thousand Miles Apart</h1>
+                <p class="slide-text">Distance couldn't dim the spark.<br>Every video call felt like home,<br>every
+                    "good morning" made my day complete. 💻❤️</p>
+            </div>
+        </div>
 
-<div class="slide">
-    <p>From metro rides 🚇 to long talks…  
-    everything became special because of you 💕</p>
-</div>
+        <!-- Slide 8 -->
+        <div class="slide">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <div class="photo-wrap"><img
+                        src="https://images.pexels.com/photos/5384442/pexels-photo-5384442.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Promise"></div>
+                <p class="chapter">✦ Chapter Six ✦</p>
+                <h1 class="slide-title">The Promise</h1>
+                <p class="slide-text">No matter the miles, my heart belongs to you.<br>I promise to always choose
+                    you,<br>to hold your hand through every storm. 🤞💖</p>
+            </div>
+        </div>
 
-<div class="slide">
-    <p>Slowly… we fell in love ❤️</p>
-</div>
+        <!-- Slide 9 -->
+        <div class="slide">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <div class="photo-wrap"><img
+                        src="https://images.pexels.com/photos/4503750/pexels-photo-4503750.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Laughter"></div>
+                <p class="chapter">✦ Chapter Seven ✦</p>
+                <h1 class="slide-title">Your Laughter, My Sunshine</h1>
+                <p class="slide-text">Your smile lights up my darkest days.<br>That laugh? It's my favorite
+                    melody.<br>Keep smiling, my love. ☀️😊</p>
+            </div>
+        </div>
 
-<div class="slide">
-    <p>That one kiss 💋 changed everything 💖</p>
-</div>
+        <!-- Slide 10 -->
+        <div class="slide">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <div class="photo-wrap"><img
+                        src="https://images.pexels.com/photos/5384571/pexels-photo-5384571.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Candle"></div>
+                <p class="chapter">✦ Chapter Eight ✦</p>
+                <h1 class="slide-title">On Your Birthday</h1>
+                <p class="slide-text">Today, the world celebrates you,<br>but I celebrate the miracle that is
+                    you.<br>You make life beautiful. 🎂🕯️</p>
+            </div>
+        </div>
 
-<!-- MEMORIES -->
+        <!-- Slide 11 -->
+        <div class="slide">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <div class="photo-wrap"><img
+                        src="https://images.pexels.com/photos/1428626/pexels-photo-1428626.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Couple Dancing"></div>
+                <p class="chapter">✦ Chapter Nine ✦</p>
+                <h1 class="slide-title">Dancing in the Dark</h1>
+                <p class="slide-text">I imagine holding you close,<br>slow dancing under fairy lights.<br>Someday soon,
+                    my love. 💃🕺</p>
+            </div>
+        </div>
 
-<script>
-let memories = [
-"IMG_20241126_160145.jpg",
-"IMG_20250626_155334.jpg",
-"IMG_20250914_102750.jpg",
-"IMG_20260219_120312.jpg",
-"IMG_20260301_110618.jpg",
-"IMG-20260219-WA0003.jpg",
-"IMG_20241202_101418.jpg",
-"IMG_20241202_101453.jpg",
-"IMG_20260219_121438.jpg",
-"IMG-20250315-WA0009.jpg",
-"Snapchat-906816339.jpg"
-];
+        <!-- Slide 12 -->
+        <div class="slide">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <div class="photo-wrap"><img
+                        src="https://images.pexels.com/photos/5376507/pexels-photo-5376507.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Forever"></div>
+                <p class="chapter">✦ Chapter Ten ✦</p>
+                <h1 class="slide-title">Forever Starts Now</h1>
+                <p class="slide-text">With every beat of my heart,<br>I fall for you all over again.<br>This is just the
+                    beginning of our forever. 💍</p>
+            </div>
+        </div>
 
-memories.forEach(src => {
-    let div = document.createElement("div");
-    div.className = "slide";
-    div.innerHTML = `
-    <img src="${src}">
-    <p>Every memory with you is priceless ❤️</p>
-    `;
-    document.body.appendChild(div);
-});
-</script>
+        <!-- Slide 13 -->
+        <div class="slide">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <div class="photo-wrap"><img
+                        src="https://images.pexels.com/photos/3812744/pexels-photo-3812744.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Coffee"></div>
+                <p class="chapter">✦ Little Things ✦</p>
+                <h1 class="slide-title">The Little Things</h1>
+                <p class="slide-text">The way you say my name,<br>your random texts, your caring heart.<br>It's the
+                    little things that made me yours. ☕💌</p>
+            </div>
+        </div>
 
-<!-- EMOTIONAL -->
+        <!-- Slide 14 -->
+        <div class="slide">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <div class="photo-wrap"><img
+                        src="https://images.pexels.com/photos/6634146/pexels-photo-6634146.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Rain"></div>
+                <p class="chapter">✦ Chapter Eleven ✦</p>
+                <h1 class="slide-title">Rain or Shine</h1>
+                <p class="slide-text">Through storms and sunshine,<br>through joy and tears,<br>I will always be right
+                    here. ☔🌤️</p>
+            </div>
+        </div>
 
-<div class="slide">
-    <p>I had to leave… but never from your heart 🥺</p>
-</div>
+        <!-- Slide 15 -->
+        <div class="slide">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <div class="photo-wrap"><img
+                        src="https://images.pexels.com/photos/5384590/pexels-photo-5384590.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Soulmate"></div>
+                <p class="chapter">✦ Chapter Twelve ✦</p>
+                <h1 class="slide-title">Soulmate</h1>
+                <p class="slide-text">You're not just my love,<br>you're my best friend, my anchor,<br>my favorite hello
+                    and hardest goodbye. 💑</p>
+            </div>
+        </div>
 
-<div class="slide">
-    <p>No distance can reduce my love for you ❤️</p>
-</div>
+        <!-- Slide 16 -->
+        <div class="slide">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <div class="photo-wrap"><img
+                        src="https://images.pexels.com/photos/5668857/pexels-photo-5668857.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Gift"></div>
+                <p class="chapter">✦ Chapter Thirteen ✦</p>
+                <h1 class="slide-title">You Are My Gift</h1>
+                <p class="slide-text">On your birthday, I celebrate the best gift life ever gave me — YOU. Thank you for
+                    existing. 🎁✨</p>
+            </div>
+        </div>
 
-<div class="slide">
-    <h1>Happy Birthday Once Again 🎂❤️</h1>
-    <p>One day… we will celebrate together forever 💍</p>
-</div>
+        <!-- Slide 17 -->
+        <div class="slide">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <div class="photo-wrap"><img
+                        src="https://images.pexels.com/photos/4861370/pexels-photo-4861370.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Together"></div>
+                <p class="chapter">✦ Final Chapter ✦</p>
+                <h1 class="slide-title">Together, Always</h1>
+                <p class="slide-text">No matter where life takes us,<br>my heart will always find yours.<br>I love you,
+                    today and always. 🥂</p>
+            </div>
+        </div>
 
-<!-- BACKGROUND SCRIPT (NO REPEAT) -->
+        <!-- Slide 18 -->
+        <div class="slide">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <div class="photo-wrap"><img
+                        src="https://images.pexels.com/photos/5875313/pexels-photo-5875313.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Sunset Kiss"></div>
+                <p class="chapter">✦ Epilogue ✦</p>
+                <h1 class="slide-title">Happily Ever After</h1>
+                <p class="slide-text">Our story is my favorite book,<br>and the best chapters are still
+                    unwritten.<br>Here's to us, my love. 📖💫</p>
+            </div>
+        </div>
 
-<script>
-let bgImages = [
-"IMG_20240815_101324.jpg",
-"IMG_20241126_160145.jpg",
-"IMG_20250626_155334.jpg",
-"IMG_20250914_102750.jpg",
-"IMG_20260219_120312.jpg",
-"IMG_20260301_110618.jpg",
-"IMG-20260219-WA0003.jpg",
-"IMG_20241202_101418.jpg",
-"IMG_20241202_101453.jpg",
-"IMG_20260219_121438.jpg",
-"IMG-20250315-WA0009.jpg",
-"Snapchat-906816339.jpg"
-];
+        <!-- Slide 19 - Finale -->
+        <div class="slide">
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <span class="big-heart">💖</span>
+                <p class="chapter">✦ Forever Begins ✦</p>
+                <h1 class="slide-title">I Love You</h1>
+                <div class="divider"><span>🌹</span></div>
+                <p class="slide-text">Happy Birthday, my Love.<br>You are my past, my present, and my future.<br>Thank
+                    you for being you. 💕</p>
+            </div>
+        </div>
+    </div>
 
-let bgIndex = 0;
-let bgDiv = document.getElementById("bg");
+    <div id="nav">
+        <button id="prevBtn" onclick="changeSlide(-1)">◀</button>
+        <span id="slideCounter">1 / 19</span>
+        <button id="nextBtn" onclick="changeSlide(1)">▶</button>
+    </div>
 
-function changeBG() {
-    bgDiv.style.backgroundImage = `url('${bgImages[bgIndex]}')`;
-    bgIndex++;
-    if (bgIndex >= bgImages.length) bgIndex = 0;
-}
+    <script>
+        // Petal generator
+        function createPetal() {
+            const petalContainer = document.getElementById('petals');
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            const icons = ['🌸', '🌹', '💖', '✨', '🌺', '🥀', '💗'];
+            petal.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+            petal.style.left = Math.random() * 100 + '%';
+            petal.style.fontSize = (Math.random() * 1.2 + 0.8) + 'rem';
+            petal.style.animationDuration = Math.random() * 4 + 4 + 's';
+            petal.style.animationDelay = Math.random() * 5 + 's';
+            petalContainer.appendChild(petal);
+            setTimeout(() => petal.remove(), 8000);
+        }
+        setInterval(createPetal, 400);
 
-changeBG();
-setInterval(changeBG, 5000);
-</script>
+        // Stars generator
+        function generateStars(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            for (let i = 0; i < 80; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.opacity = Math.random() * 0.6 + 0.2;
+                container.appendChild(star);
+            }
+        }
+        generateStars('introStars');
+        document.querySelectorAll('.slide .stars').forEach(el => generateStars(el.id || 'temp'));
 
-<!-- SLIDES -->
+        // Heart burst
+        function burstHearts() {
+            const burstDiv = document.getElementById('heart-burst');
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-particle');
+                heart.innerHTML = ['❤️', '💖', '💗', '💓'][Math.floor(Math.random() * 4)];
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 80 + Math.random() * 140;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                heart.style.setProperty('--tx', tx + 'px');
+                heart.style.setProperty('--ty', ty + 'px');
+                heart.style.left = '50%';
+                heart.style.top = '50%';
+                heart.style.transform = 'translate(-50%, -50%)';
+                burstDiv.appendChild(heart);
+                setTimeout(() => heart.remove(), 1500);
+            }
+        }
 
-<script>
-let slides = document.querySelectorAll(".slide");
-let index = 0;
+        // Slideshow logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const counterSpan = document.getElementById('slideCounter');
 
-function showSlides() {
-    slides[index].classList.remove("active");
-    index = (index + 1) % slides.length;
-    slides[index].classList.add("active");
-}
+        function updateSlides() {
+            slides.forEach((slide, idx) => {
+                slide.classList.toggle('active', idx === currentSlide);
+            });
+            counterSpan.innerText = (currentSlide + 1) + ' / ' + totalSlides;
+            const progressPercent = ((currentSlide) / (totalSlides - 1)) * 100;
+            document.getElementById('progress').style.width = progressPercent + '%';
+            burstHearts();
+        }
 
-setInterval(showSlides, 5000);
-</script>
+        window.changeSlide = function (direction) {
+            let newIndex = currentSlide + direction;
+            if (newIndex < 0) newIndex = 0;
+            if (newIndex >= totalSlides) newIndex = totalSlides - 1;
+            if (newIndex !== currentSlide) {
+                currentSlide = newIndex;
+                updateSlides();
+            }
+        };
 
+        window.startShow = function () {
+            const intro = document.getElementById('intro');
+            intro.style.opacity = '0';
+            setTimeout(() => {
+                intro.style.display = 'none';
+                document.getElementById('show').style.display = 'block';
+                currentSlide = 0;
+                updateSlides();
+            }, 1000);
+        };
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('intro').style.display === 'none') {
+                if (e.key === 'ArrowLeft') changeSlide(-1);
+                if (e.key === 'ArrowRight') changeSlide(1);
+            }
+        });
+    </script>
 </body>
+
 </html>
