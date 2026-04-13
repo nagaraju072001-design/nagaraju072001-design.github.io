@@ -1,115 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Happy Birthday 🎂</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            font-family: 'Arial', sans-serif;
-            background: black;
-            color: white;
-            text-align: center;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love ❤️</title>
 
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            animation: fade 2s;
-        }
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    text-align: center;
 
-        .active {
-            display: flex;
-        }
+    /* Romantic Background */
+    background: url("https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2") no-repeat center center/cover;
+}
 
-        img {
-            width: 300px;
-            height: 300px;
-            border-radius: 20px;
-            box-shadow: 0 0 30px pink;
-        }
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+}
 
-        h1 {
-            font-size: 50px;
-            animation: glow 2s infinite alternate;
-        }
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
 
-        p {
-            font-size: 24px;
-        }
+.active {
+    display: flex;
+    animation: fade 2s;
+}
 
-        @keyframes fade {
-            from {
-                opacity: 0;
-            }
+img {
+    width: 260px;
+    height: 260px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px pink;
+    object-fit: cover;
+}
 
-            to {
-                opacity: 1;
-            }
-        }
+h1 {
+    color: #ff4d6d;
+}
 
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 10px pink;
-            }
+p {
+    font-size: 22px;
+    max-width: 600px;
+}
 
-            to {
-                text-shadow: 0 0 30px red;
-            }
-        }
-    </style>
+@keyframes fade {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    color: pink;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    from {transform: translateY(100vh);}
+    to {transform: translateY(-10vh);}
+}
+</style>
 </head>
 
 <body>
 
-    <!-- 🎵 Background Music -->
-    <audio autoplay loop>
-        <source src="song.mp3" type="audio/mp3">
-    </audio>
+<div class="overlay"></div>
 
-    <!-- Slide 1 -->
-    <div class="slide active">
-        <h1>🎉 Happy Birthday 🎂</h1>
-        <p>Wishing you a day full of love & happiness</p>
-    </div>
+<!-- 🎵 Music -->
+<audio id="music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
+</audio>
 
-    <!-- Slide 2 -->
-    <div class="slide">
-        <img src="photo1.jpg">
-        <p>You are My Love 💖</p>
-    </div>
+<button onclick="document.getElementById('music').play()" 
+style="position:absolute;top:20px;right:20px;padding:10px;border:none;background:pink;color:white;border-radius:10px;">
+Play Music ❤️
+</button>
 
-    <!-- Slide 3 -->
-    <div class="slide">
-        <img src="photo2.jpg">
-        <p>Stay blessed and keep smiling 😊</p>
-    </div>
+<!-- Slides -->
+<div class="slide active">
+    <h1>Happy Birthday My Love ❤️</h1>
+    <p>I may not be with you today... but my heart is always with you 💕</p>
+</div>
 
-    <!-- Slide 4 -->
-    <div class="slide">
-        <h1>🎈 Dont Forget me 🎈</h1>
-    </div>
+<div class="slide">
+    <p>I miss you every single moment 💔</p>
+</div>
 
-    <script>
-        let slides = document.querySelectorAll(".slide");
-        let index = 0;
+<div class="slide">
+    <p>No distance can ever reduce my love for you 🌍❤️</p>
+</div>
 
-        function showSlides() {
-            slides[index].classList.remove("active");
-            index = (index + 1) % slides.length;
-            slides[index].classList.add("active");
-        }
+<!-- IMAGE SLIDES AUTO GENERATED -->
+<script>
+let images = [
+"https://i.imgur.com/photo1.jpg",
+"https://i.imgur.com/photo2.jpg",
+"https://i.imgur.com/photo3.jpg"
+];
 
-        setInterval(showSlides, 4000); // change every 4 sec
-    </script>
+let container = document.body;
+
+images.forEach((src) => {
+    let div = document.createElement("div");
+    div.className = "slide";
+    div.innerHTML = `<img src="${src}"><p>Every memory with you is special 💖</p>`;
+    container.appendChild(div);
+});
+</script>
+
+<!-- FINAL MESSAGE -->
+<div class="slide">
+    <h1>I Love You Forever ❤️</h1>
+    <p>No matter how far we are, you are always in my heart 💕</p>
+</div>
+
+<script>
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+function showSlides() {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+}
+
+setInterval(showSlides, 5000); // 5 sec per slide (~3+ min total if many slides)
+
+// Floating hearts
+setInterval(() => {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.innerHTML = "❤️";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+}, 500);
+</script>
 
 </body>
-
 </html>
