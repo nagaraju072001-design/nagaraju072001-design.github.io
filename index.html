@@ -95,63 +95,89 @@ style="position:absolute;top:20px;right:20px;padding:10px;background:pink;color:
 Play Music ❤️
 </button>
 
-<!-- Slides -->
+<!-- STORY SLIDES -->
+
 <div class="slide active">
-    <h1>Happy Birthday My Love ❤️</h1>
-    <p>Even though I’m not there with you today… my heart never left you 💔</p>
+    <h1>Our Story ❤️</h1>
+    <p>This is not just a birthday…  
+    it’s a story of us… a story I will never forget 💖</p>
 </div>
 
 <div class="slide">
-    <p>I miss you in ways I can’t even explain… every second feels empty without you 🥺</p>
+    <p>The first time I saw you…  
+    was not in person… but on a Google Meet onboarding call 💻</p>
 </div>
 
 <div class="slide">
-    <p>Distance is just a test… to see how strong our love really is ❤️</p>
+    <p>Among so many faces…  
+    my eyes stopped at you…  
+    and I don’t know why… but I felt something special 🥺</p>
 </div>
 
 <div class="slide">
-    <p>Every memory with you… is my favorite place to go when I miss you 💭</p>
+    <p>I didn’t know then…  
+    that you would become the most important person in my life ❤️</p>
 </div>
 
 <div class="slide">
-    <p>You are not just my love… you are my peace, my happiness, my whole world 🌍❤️</p>
+    <p>Then came that beautiful day…  
+    our first picture together 📸  
+    Independence Day… a moment I’ll always keep in my heart 🇮🇳❤️</p>
+</div>
+
+    <div class="slide">
+    <img src="images/independence.jpg">
+    <p>Our first memory together… and my favorite one 💖</p>
+</div>
+<div class="slide">
+    <p>And then… life surprised me again…  
+    we were living in the same place 😳❤️</p>
 </div>
 
 <div class="slide">
-    <p>I wish I could hold your hand today… and celebrate your smile in front of me 💕</p>
+    <p>Every day after office…  
+    we travelled together in metro 🚇  
+    those small journeys became my happiest moments 💕</p>
 </div>
 
 <div class="slide">
-    <p>But until that day comes… I’ll keep loving you more and more every single day ❤️</p>
+    <p>Slowly… without even realizing…  
+    we started liking each other ❤️</p>
 </div>
 
 <div class="slide">
-    <p>No distance, no time… nothing can ever change what I feel for you 💖</p>
+    <p>And one day…  
+    I kissed you 💋  
+    and everything changed… in the most beautiful way 💖</p>
 </div>
 
 <div class="slide">
-    <p>You are the best thing that ever happened to me… and I’m so lucky to have you 💫</p>
+    <p>From that moment…  
+    we were no longer just two people…  
+    we became “us” ❤️</p>
 </div>
-
-<div class="slide">
-    <h1>I Love You Forever ❤️</h1>
-    <p>And I will keep loving you… in every lifetime 🥺💖</p>
-</div>
-
 <!-- IMAGE SLIDES -->
 <script>
-let images = [
-"https://images.unsplash.com/photo-1518199266791-5375a83190b7",
-"https://images.unsplash.com/photo-1529634891458-75cdbd55b5f9",
-"https://images.unsplash.com/photo-1501901609772-df0848060b33"
+<script>
+let memories = [
+"images/m1.jpg",
+"images/m2.jpg",
+"images/m3.jpg",
+"images/m4.jpg",
+"images/m5.jpg",
+// add up to 20+ images
 ];
 
-images.forEach(src => {
+memories.forEach(src => {
     let div = document.createElement("div");
     div.className = "slide";
-    div.innerHTML = `<img src="${src}"><p>Every memory with you is special ❤️</p>`;
+    div.innerHTML = `
+    <img src="${src}">
+    <p>Every moment with you… is a memory I will cherish forever ❤️</p>
+    `;
     document.body.appendChild(div);
 });
+</script>
 </script>
 
 <div class="slide">
