@@ -483,16 +483,46 @@
                 </div>
             </div>
         </div>
+
+        <!-- Slide 20 - Special Message from Me (Friend, Guide, Teacher, Helper) -->
+        <div class="slide" data-bg-index="0">
+            <div class="slide-bg"></div>
+            <div class="stars"></div>
+            <div class="slide-vignette"></div>
+            <div class="slide-content">
+                <div class="photo-wrap"><img src="images/image18.jpg" alt="Nagaraju"></div>
+                <p class="chapter">✦ A Special Note ✦</p>
+                <h1 class="slide-title">From Me to You</h1>
+                <div class="divider"><span>💝</span></div>
+                <p class="slide-text">
+                    To the most amazing person I know...<br><br>
+                    I may be your <strong>Friend</strong> who laughs with you,<br>
+                    your <strong>Guide</strong> who helps you find your way,<br>
+                    your <strong>Teacher</strong> who shares knowledge with you,<br>
+                    and your <strong>Helper</strong> who is always there for you.<br><br>
+                    But more than all of that, I am someone who truly cares about you.<br>
+                    Watching you grow, smile, and shine makes me proud every day.<br><br>
+                    Thank you for letting me be part of your journey.<br>
+                    You are not just special — you are irreplaceable. 💖
+                </p>
+                <div>
+                    <span class="kiss-emoji">💋</span>
+                    <span class="kiss-emoji">😘</span>
+                    <span class="kiss-emoji">💋</span>
+                </div>
+                <p class="slide-text" style="font-size: 1.4rem;">With love,<br><strong>Your Name Here</strong> 💕</p>
+            </div>
+        </div>
     </div>
 
     <div id="nav">
         <button id="prevBtn" onclick="changeSlide(-1)">◀</button>
-        <span id="slideCounter">1 / 19</span>
+        <span id="slideCounter">1 / 20</span>
         <button id="nextBtn" onclick="changeSlide(1)">▶</button>
     </div>
 
     <script>
-        // List of your 17 images for random background
+        // List of your images for random background
         const bgImages = [
             'images/image1.jpg', 'images/image2.jpg', 'images/image3.jpg',
             'images/image4.jpg', 'images/image5.jpg', 'images/image6.jpg',
@@ -508,7 +538,6 @@
             slides.forEach((slide, index) => {
                 const bgDiv = slide.querySelector('.slide-bg');
                 if (bgDiv) {
-                    // Use different random image for each slide
                     const randomIndex = Math.floor(Math.random() * bgImages.length);
                     bgDiv.style.backgroundImage = `url('${bgImages[randomIndex]}')`;
                     bgDiv.style.backgroundSize = 'cover';
@@ -616,7 +645,7 @@
             setTimeout(() => {
                 intro.style.display = 'none';
                 document.getElementById('show').style.display = 'block';
-                setRandomBackgrounds(); // Set random backgrounds when slideshow starts
+                setRandomBackgrounds();
                 currentSlide = 0;
                 updateSlides();
             }, 1000);
