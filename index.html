@@ -23,6 +23,30 @@
             overflow-x: hidden;
         }
 
+        /* Floating Hearts Background */
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9997;
+            font-size: 1.2rem;
+            animation: floatHeart 8s ease-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% {
+                transform: translateY(-20vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Falling Petals */
         .petal-container {
             position: fixed;
             top: 0;
@@ -53,6 +77,20 @@
             }
         }
 
+        /* Cake Decoration */
+        .cake-emoji {
+            font-size: 3rem;
+            display: inline-block;
+            animation: bounce 1s ease-in-out infinite;
+            margin: 0 0.5rem;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Heart Burst Effect */
         .heart-burst {
             position: fixed;
             top: 50%;
@@ -78,10 +116,11 @@
             }
         }
 
+        /* Intro Screen */
         #intro {
             position: fixed;
             inset: 0;
-            background: radial-gradient(ellipse at center, #2d0a1a 0%, #130810 100%);
+            background: radial-gradient(ellipse at center, #3d0f22 0%, #130810 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -131,6 +170,7 @@
             50% { transform: scale(1.03); }
         }
 
+        /* Slideshow */
         #show {
             display: none;
         }
@@ -162,10 +202,22 @@
             }
         }
 
+        /* Blurred Background Image */
+        .slide-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            filter: blur(12px) brightness(0.35);
+            transform: scale(1.05);
+            z-index: 0;
+            transition: opacity 0.5s ease;
+        }
+
         .slide-vignette {
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at center, rgba(19, 8, 16, 0.3) 0%, rgba(19, 8, 16, 0.9) 100%);
+            background: radial-gradient(ellipse at center, rgba(19, 8, 16, 0.4) 0%, rgba(19, 8, 16, 0.85) 100%);
             z-index: 1;
         }
 
@@ -187,6 +239,8 @@
             border-radius: 28px;
             box-shadow: 0 0 0 4px rgba(232, 50, 106, 0.5), 0 20px 40px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s;
+            position: relative;
+            z-index: 3;
         }
 
         .chapter {
@@ -241,6 +295,31 @@
             56% { transform: scale(1); }
         }
 
+        .kiss-emoji {
+            font-size: 1.8rem;
+            display: inline-block;
+            margin: 0 0.3rem;
+            animation: kissFloat 2s ease-in-out infinite;
+        }
+
+        @keyframes kissFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(10deg); }
+        }
+
+        .party-emoji {
+            font-size: 2rem;
+            display: inline-block;
+            animation: partyShake 0.5s ease-in-out infinite;
+        }
+
+        @keyframes partyShake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-15deg); }
+        }
+
+        /* Navigation */
         #progress {
             position: fixed;
             top: 0;
@@ -323,19 +402,32 @@
     <div id="heart-burst" class="heart-burst"></div>
     <div id="progress"></div>
 
+    <!-- Intro Screen -->
     <div id="intro">
         <div class="stars" id="introStars"></div>
         <div style="position:relative; z-index:2;">
+            <div>
+                <span class="cake-emoji">🎂</span>
+                <span class="cake-emoji">🎈</span>
+                <span class="cake-emoji">🎉</span>
+            </div>
             <span class="big-heart">💖</span>
             <h1>Happy Birthday<br>My Love</h1>
             <p>A love story written just for you…</p>
-            <button id="startBtn" onclick="startShow()">Open Your Gift ❤️</button>
+            <div>
+                <span class="kiss-emoji">💋</span>
+                <span class="kiss-emoji">😘</span>
+                <span class="kiss-emoji">💋</span>
+            </div>
+            <button id="startBtn">Open Your Gift ❤️</button>
         </div>
     </div>
 
+    <!-- Main Slideshow -->
     <div id="show">
-        <!-- Slide 1 - Text only -->
-        <div class="slide active">
+        <!-- Slide 1 -->
+        <div class="slide active" data-bg-index="0">
+            <div class="slide-bg"></div>
             <div class="stars"></div>
             <div class="slide-vignette"></div>
             <div class="slide-content">
@@ -344,215 +436,36 @@
                 <h1 class="slide-title">Happy Birthday<br>My Everything</h1>
                 <div class="divider"><span>🌹</span></div>
                 <p class="slide-text">This is not just your birthday…<br>this is <em>our story</em>…<br>the most beautiful part of my life 💖</p>
+                <div>
+                    <span class="party-emoji">🎉</span>
+                    <span class="kiss-emoji">💋</span>
+                    <span class="party-emoji">🎂</span>
+                </div>
             </div>
         </div>
 
-        <!-- Slide 2 - Image 1 -->
-        <div class="slide">
-            <div class="stars"></div>
-            <div class="slide-vignette"></div>
-            <div class="slide-content">
-                <div class="photo-wrap"><img src="images/image1.jpg" alt="First Glimpse"></div>
-                <p class="chapter">✦ Chapter One ✦</p>
-                <h1 class="slide-title">The First Glimpse</h1>
-                <p class="slide-text">The first time I saw you…<br>was on a Google Meet call 💻<br>Among so many faces…<br><em>my eyes stopped at you…</em><br>and something in my heart quietly said…<br><em>"She is special"</em> 🥺</p>
-            </div>
-        </div>
+        <!-- Slides 2 to 18 with images and random background images -->
+        <div class="slide" data-bg-index="1"><div class="slide-bg"></div><div class="stars"></div><div class="slide-vignette"></div><div class="slide-content"><div class="photo-wrap"><img src="images/image1.jpg" alt="First Glimpse"></div><p class="chapter">✦ Chapter One ✦</p><h1 class="slide-title">The First Glimpse</h1><p class="slide-text">The first time I saw you…<br>was on a Google Meet call 💻<br>Among so many faces…<br><em>my eyes stopped at you…</em><br>and something in my heart quietly said…<br><em>"She is special"</em> 🥺</p><div><span class="kiss-emoji">😘</span><span class="heart-emoji">❤️</span></div></div></div>
+        <div class="slide" data-bg-index="2"><div class="slide-bg"></div><div class="stars"></div><div class="slide-vignette"></div><div class="slide-content"><div class="photo-wrap"><img src="images/image2.jpg" alt="Butterflies"></div><p class="chapter">✦ Chapter Two ✦</p><h1 class="slide-title">Butterflies & Wishes</h1><p class="slide-text">Every message from you made my heart race.<br>I’d wait for your name to pop up on my screen,<br>and the world felt brighter. ✨</p><div><span class="kiss-emoji">💋</span><span class="heart-emoji">💖</span></div></div></div>
+        <div class="slide" data-bg-index="3"><div class="slide-bg"></div><div class="stars"></div><div class="slide-vignette"></div><div class="slide-content"><div class="photo-wrap"><img src="images/image3.jpg" alt="Sunset Love"></div><p class="chapter">✦ Chapter Three ✦</p><h1 class="slide-title">Falling Deeper</h1><p class="slide-text">Day by day, you became my favorite thought,<br>my reason to smile, my peace in chaos.<br>I didn’t just fall for you —<br>I <em>ran</em> towards you. 🏃‍♂️💨</p><div><span class="kiss-emoji">😘</span><span class="heart-emoji">💗</span></div></div></div>
+        <div class="slide" data-bg-index="4"><div class="slide-bg"></div><div class="stars"></div><div class="slide-vignette"></div><div class="slide-content"><div class="photo-wrap"><img src="images/image4.jpg" alt="Couple Silhouette"></div><p class="chapter">✦ Eternally Yours ✦</p><h1 class="slide-title">Now & Forever</h1><p class="slide-text">You are my today and all of my tomorrows.<br>Every moment with you is a treasure.<br><em>I love you more than words can ever say.</em> 💕</p><div><span class="kiss-emoji">💋</span><span class="heart-emoji">💓</span></div></div></div>
+        <div class="slide" data-bg-index="5"><div class="slide-bg"></div><div class="stars"></div><div class="slide-vignette"></div><div class="slide-content"><div class="photo-wrap"><img src="images/image5.jpg" alt="Starry Night"></div><p class="chapter">✦ Chapter Four ✦</p><h1 class="slide-title">Starry Nights & Deep Talks</h1><p class="slide-text">Late night calls, silly laughs,<br>sharing dreams under the same moon.<br>Those nights became my favorite lullaby. 🌙</p><div><span class="kiss-emoji">😘</span><span class="heart-emoji">💖</span></div></div></div>
+        <div class="slide" data-bg-index="6"><div class="slide-bg"></div><div class="stars"></div><div class="slide-vignette"></div><div class="slide-content"><div class="photo-wrap"><img src="images/image6.jpg" alt="Hand Hold"></div><p class="chapter">✦ Chapter Five ✦</p><h1 class="slide-title">A Thousand Miles Apart</h1><p class="slide-text">Distance couldn't dim the spark.<br>Every video call felt like home,<br>every "good morning" made my day complete. 💻❤️</p><div><span class="kiss-emoji">💋</span><span class="heart-emoji">❤️</span></div></div></div>
+        <div class="slide" data-bg-index="7"><div class="slide-bg"></div><div class="stars"></div><div class="slide-vignette"></div><div class="slide-content"><div class="photo-wrap"><img src="images/image7.jpg" alt="Promise"></div><p class="chapter">✦ Chapter Six ✦</p><h1 class="slide-title">The Promise</h1><p class="slide-text">No matter the miles, my heart belongs to you.<br>I promise to always choose you,<br>to hold your hand through every storm. 🤞💖</p><div><span class="kiss-emoji">😘</span><span class="heart-emoji">💗</span></div></div></div>
+        <div class="slide" data-bg-index="8"><div class="slide-bg"></div><div class="stars"></div><div class="slide-vignette"></div><div class="slide-content"><div class="photo-wrap"><img src="images/image8.jpg" alt="Laughter"></div><p class="chapter">✦ Chapter Seven ✦</p><h1 class="slide-title">Your Laughter, My Sunshine</h1><p class="slide-text">Your smile lights up my darkest days.<br>That laugh? It's my favorite melody.<br>Keep smiling, my love. ☀️😊</p><div><span class="kiss-emoji">💋</span><span class="heart-emoji">💖</span></div></div></div>
+        <div class="slide" data-bg-index="9"><div class="slide-bg"></div><div class="stars"></div><div class="slide-vignette"></div><div class="slide-content"><div class="photo-wrap"><img src="images/image9.jpg" alt="Candle"></div><p class="chapter">✦ Chapter Eight ✦</p><h1 class="slide-title">On Your Birthday</h1><p class="slide-text">Today, the world celebrates you,<br>but I celebrate the miracle that is you.<br>You make life beautiful. 🎂🕯️</p><div><span class="party-emoji">🎉</span><span class="cake-emoji">🎂</span><span class="kiss-emoji">😘</span></div></div></div>
+        <div class="slide" data-bg-index="10"><div class="slide-bg"></div><div class="stars"></div><div class="slide-vignette"></div><div class="slide-content"><div class="photo-wrap"><img src="images/image10.jpg" alt="Couple Dancing"></div><p class="chapter">✦ Chapter Nine ✦</p><h1 class="slide-title">Dancing in the Dark</h1><p class="slide-text">I imagine holding you close,<br>slow dancing under fairy lights.<br>Someday soon, my love. 💃🕺</p><div><span class="kiss-emoji">💋</span><span class="heart-emoji">💓</span></div></div></div>
+        <div class="slide" data-bg-index="11"><div class="slide-bg"></div><div class="stars"></div><div class="slide-vignette"></div><div class="slide-content"><div class="photo-wrap"><img src="images/image11.jpg" alt="Forever"></div><p class="chapter">✦ Chapter Ten ✦</p><h1 class="slide-title">Forever Starts Now</h1><p class="slide-text">With every beat of my heart,<br>I fall for you all over again.<br>This is just the beginning of our forever. 💍</p><div><span class="kiss-emoji">😘</span><span class="heart-emoji">💖</span></div></div></div>
+        <div class="slide" data-bg-index="12"><div class="slide-bg"></div><div class="stars"></div><div class="slide-vignette"></div><div class="slide-content"><div class="photo-wrap"><img src="images/image12.jpg" alt="Coffee"></div><p class="chapter">✦ Little Things ✦</p><h1 class="slide-title">The Little Things</h1><p class="slide-text">The way you say my name,<br>your random texts, your caring heart.<br>It's the little things that made me yours. ☕💌</p><div><span class="kiss-emoji">💋</span><span class="heart-emoji">❤️</span></div></div></div>
+        <div class="slide" data-bg-index="13"><div class="slide-bg"></div><div class="stars"></div><div class="slide-vignette"></div><div class="slide-content"><div class="photo-wrap"><img src="images/image13.jpg" alt="Rain"></div><p class="chapter">✦ Chapter Eleven ✦</p><h1 class="slide-title">Rain or Shine</h1><p class="slide-text">Through storms and sunshine,<br>through joy and tears,<br>I will always be right here. ☔🌤️</p><div><span class="kiss-emoji">😘</span><span class="heart-emoji">💗</span></div></div></div>
+        <div class="slide" data-bg-index="14"><div class="slide-bg"></div><div class="stars"></div><div class="slide-vignette"></div><div class="slide-content"><div class="photo-wrap"><img src="images/image14.jpg" alt="Soulmate"></div><p class="chapter">✦ Chapter Twelve ✦</p><h1 class="slide-title">Soulmate</h1><p class="slide-text">You're not just my love,<br>you're my best friend, my anchor,<br>my favorite hello and hardest goodbye. 💑</p><div><span class="kiss-emoji">💋</span><span class="heart-emoji">💖</span></div></div></div>
+        <div class="slide" data-bg-index="15"><div class="slide-bg"></div><div class="stars"></div><div class="slide-vignette"></div><div class="slide-content"><div class="photo-wrap"><img src="images/image15.jpg" alt="Gift"></div><p class="chapter">✦ Chapter Thirteen ✦</p><h1 class="slide-title">You Are My Gift</h1><p class="slide-text">On your birthday, I celebrate the best gift life ever gave me — YOU. Thank you for existing. 🎁✨</p><div><span class="party-emoji">🎉</span><span class="kiss-emoji">😘</span><span class="cake-emoji">🎂</span></div></div></div>
+        <div class="slide" data-bg-index="16"><div class="slide-bg"></div><div class="stars"></div><div class="slide-vignette"></div><div class="slide-content"><div class="photo-wrap"><img src="images/image16.jpg" alt="Together"></div><p class="chapter">✦ Final Chapter ✦</p><h1 class="slide-title">Together, Always</h1><p class="slide-text">No matter where life takes us,<br>my heart will always find yours.<br>I love you, today and always. 🥂</p><div><span class="kiss-emoji">💋</span><span class="heart-emoji">💓</span></div></div></div>
+        <div class="slide" data-bg-index="17"><div class="slide-bg"></div><div class="stars"></div><div class="slide-vignette"></div><div class="slide-content"><div class="photo-wrap"><img src="images/image17.jpg" alt="Sunset Kiss"></div><p class="chapter">✦ Epilogue ✦</p><h1 class="slide-title">Happily Ever After</h1><p class="slide-text">Our story is my favorite book,<br>and the best chapters are still unwritten.<br>Here's to us, my love. 📖💫</p><div><span class="kiss-emoji">😘</span><span class="heart-emoji">💖</span></div></div></div>
 
-        <!-- Slide 3 - Image 2 -->
-        <div class="slide">
-            <div class="stars"></div>
-            <div class="slide-vignette"></div>
-            <div class="slide-content">
-                <div class="photo-wrap"><img src="images/image2.jpg" alt="Butterflies"></div>
-                <p class="chapter">✦ Chapter Two ✦</p>
-                <h1 class="slide-title">Butterflies & Wishes</h1>
-                <p class="slide-text">Every message from you made my heart race.<br>I’d wait for your name to pop up on my screen,<br>and the world felt brighter. ✨</p>
-            </div>
-        </div>
-
-        <!-- Slide 4 - Image 3 -->
-        <div class="slide">
-            <div class="stars"></div>
-            <div class="slide-vignette"></div>
-            <div class="slide-content">
-                <div class="photo-wrap"><img src="images/image3.jpg" alt="Sunset Love"></div>
-                <p class="chapter">✦ Chapter Three ✦</p>
-                <h1 class="slide-title">Falling Deeper</h1>
-                <p class="slide-text">Day by day, you became my favorite thought,<br>my reason to smile, my peace in chaos.<br>I didn’t just fall for you —<br>I <em>ran</em> towards you. 🏃‍♂️💨</p>
-            </div>
-        </div>
-
-        <!-- Slide 5 - Image 4 -->
-        <div class="slide">
-            <div class="stars"></div>
-            <div class="slide-vignette"></div>
-            <div class="slide-content">
-                <div class="photo-wrap"><img src="images/image4.jpg" alt="Couple Silhouette"></div>
-                <p class="chapter">✦ Eternally Yours ✦</p>
-                <h1 class="slide-title">Now & Forever</h1>
-                <p class="slide-text">You are my today and all of my tomorrows.<br>Every moment with you is a treasure.<br><em>I love you more than words can ever say.</em> 💕</p>
-            </div>
-        </div>
-
-        <!-- Slide 6 - Image 5 -->
-        <div class="slide">
-            <div class="stars"></div>
-            <div class="slide-vignette"></div>
-            <div class="slide-content">
-                <div class="photo-wrap"><img src="images/image5.jpg" alt="Starry Night"></div>
-                <p class="chapter">✦ Chapter Four ✦</p>
-                <h1 class="slide-title">Starry Nights & Deep Talks</h1>
-                <p class="slide-text">Late night calls, silly laughs,<br>sharing dreams under the same moon.<br>Those nights became my favorite lullaby. 🌙</p>
-            </div>
-        </div>
-
-        <!-- Slide 7 - Image 6 -->
-        <div class="slide">
-            <div class="stars"></div>
-            <div class="slide-vignette"></div>
-            <div class="slide-content">
-                <div class="photo-wrap"><img src="images/image6.jpg" alt="Hand Hold"></div>
-                <p class="chapter">✦ Chapter Five ✦</p>
-                <h1 class="slide-title">A Thousand Miles Apart</h1>
-                <p class="slide-text">Distance couldn't dim the spark.<br>Every video call felt like home,<br>every "good morning" made my day complete. 💻❤️</p>
-            </div>
-        </div>
-
-        <!-- Slide 8 - Image 7 -->
-        <div class="slide">
-            <div class="stars"></div>
-            <div class="slide-vignette"></div>
-            <div class="slide-content">
-                <div class="photo-wrap"><img src="images/image7.jpg" alt="Promise"></div>
-                <p class="chapter">✦ Chapter Six ✦</p>
-                <h1 class="slide-title">The Promise</h1>
-                <p class="slide-text">No matter the miles, my heart belongs to you.<br>I promise to always choose you,<br>to hold your hand through every storm. 🤞💖</p>
-            </div>
-        </div>
-
-        <!-- Slide 9 - Image 8 -->
-        <div class="slide">
-            <div class="stars"></div>
-            <div class="slide-vignette"></div>
-            <div class="slide-content">
-                <div class="photo-wrap"><img src="images/image8.jpg" alt="Laughter"></div>
-                <p class="chapter">✦ Chapter Seven ✦</p>
-                <h1 class="slide-title">Your Laughter, My Sunshine</h1>
-                <p class="slide-text">Your smile lights up my darkest days.<br>That laugh? It's my favorite melody.<br>Keep smiling, my love. ☀️😊</p>
-            </div>
-        </div>
-
-        <!-- Slide 10 - Image 9 -->
-        <div class="slide">
-            <div class="stars"></div>
-            <div class="slide-vignette"></div>
-            <div class="slide-content">
-                <div class="photo-wrap"><img src="images/image9.jpg" alt="Candle"></div>
-                <p class="chapter">✦ Chapter Eight ✦</p>
-                <h1 class="slide-title">On Your Birthday</h1>
-                <p class="slide-text">Today, the world celebrates you,<br>but I celebrate the miracle that is you.<br>You make life beautiful. 🎂🕯️</p>
-            </div>
-        </div>
-
-        <!-- Slide 11 - Image 10 -->
-        <div class="slide">
-            <div class="stars"></div>
-            <div class="slide-vignette"></div>
-            <div class="slide-content">
-                <div class="photo-wrap"><img src="images/image10.jpg" alt="Couple Dancing"></div>
-                <p class="chapter">✦ Chapter Nine ✦</p>
-                <h1 class="slide-title">Dancing in the Dark</h1>
-                <p class="slide-text">I imagine holding you close,<br>slow dancing under fairy lights.<br>Someday soon, my love. 💃🕺</p>
-            </div>
-        </div>
-
-        <!-- Slide 12 - Image 11 -->
-        <div class="slide">
-            <div class="stars"></div>
-            <div class="slide-vignette"></div>
-            <div class="slide-content">
-                <div class="photo-wrap"><img src="images/image11.jpg" alt="Forever"></div>
-                <p class="chapter">✦ Chapter Ten ✦</p>
-                <h1 class="slide-title">Forever Starts Now</h1>
-                <p class="slide-text">With every beat of my heart,<br>I fall for you all over again.<br>This is just the beginning of our forever. 💍</p>
-            </div>
-        </div>
-
-        <!-- Slide 13 - Image 12 -->
-        <div class="slide">
-            <div class="stars"></div>
-            <div class="slide-vignette"></div>
-            <div class="slide-content">
-                <div class="photo-wrap"><img src="images/image12.jpg" alt="Coffee"></div>
-                <p class="chapter">✦ Little Things ✦</p>
-                <h1 class="slide-title">The Little Things</h1>
-                <p class="slide-text">The way you say my name,<br>your random texts, your caring heart.<br>It's the little things that made me yours. ☕💌</p>
-            </div>
-        </div>
-
-        <!-- Slide 14 - Image 13 -->
-        <div class="slide">
-            <div class="stars"></div>
-            <div class="slide-vignette"></div>
-            <div class="slide-content">
-                <div class="photo-wrap"><img src="images/image13.jpg" alt="Rain"></div>
-                <p class="chapter">✦ Chapter Eleven ✦</p>
-                <h1 class="slide-title">Rain or Shine</h1>
-                <p class="slide-text">Through storms and sunshine,<br>through joy and tears,<br>I will always be right here. ☔🌤️</p>
-            </div>
-        </div>
-
-        <!-- Slide 15 - Image 14 -->
-        <div class="slide">
-            <div class="stars"></div>
-            <div class="slide-vignette"></div>
-            <div class="slide-content">
-                <div class="photo-wrap"><img src="images/image14.jpg" alt="Soulmate"></div>
-                <p class="chapter">✦ Chapter Twelve ✦</p>
-                <h1 class="slide-title">Soulmate</h1>
-                <p class="slide-text">You're not just my love,<br>you're my best friend, my anchor,<br>my favorite hello and hardest goodbye. 💑</p>
-            </div>
-        </div>
-
-        <!-- Slide 16 - Image 15 -->
-        <div class="slide">
-            <div class="stars"></div>
-            <div class="slide-vignette"></div>
-            <div class="slide-content">
-                <div class="photo-wrap"><img src="images/image15.jpg" alt="Gift"></div>
-                <p class="chapter">✦ Chapter Thirteen ✦</p>
-                <h1 class="slide-title">You Are My Gift</h1>
-                <p class="slide-text">On your birthday, I celebrate the best gift life ever gave me — YOU. Thank you for existing. 🎁✨</p>
-            </div>
-        </div>
-
-        <!-- Slide 17 - Image 16 -->
-        <div class="slide">
-            <div class="stars"></div>
-            <div class="slide-vignette"></div>
-            <div class="slide-content">
-                <div class="photo-wrap"><img src="images/image16.jpg" alt="Together"></div>
-                <p class="chapter">✦ Final Chapter ✦</p>
-                <h1 class="slide-title">Together, Always</h1>
-                <p class="slide-text">No matter where life takes us,<br>my heart will always find yours.<br>I love you, today and always. 🥂</p>
-            </div>
-        </div>
-
-        <!-- Slide 18 - Image 17 -->
-        <div class="slide">
-            <div class="stars"></div>
-            <div class="slide-vignette"></div>
-            <div class="slide-content">
-                <div class="photo-wrap"><img src="images/image17.jpg" alt="Sunset Kiss"></div>
-                <p class="chapter">✦ Epilogue ✦</p>
-                <h1 class="slide-title">Happily Ever After</h1>
-                <p class="slide-text">Our story is my favorite book,<br>and the best chapters are still unwritten.<br>Here's to us, my love. 📖💫</p>
-            </div>
-        </div>
-
-        <!-- Slide 19 - Finale (Text only) -->
-        <div class="slide">
+        <!-- Slide 19 - Finale -->
+        <div class="slide" data-bg-index="0">
+            <div class="slide-bg"></div>
             <div class="stars"></div>
             <div class="slide-vignette"></div>
             <div class="slide-content">
@@ -561,6 +474,13 @@
                 <h1 class="slide-title">I Love You</h1>
                 <div class="divider"><span>🌹</span></div>
                 <p class="slide-text">Happy Birthday, my Love.<br>You are my past, my present, and my future.<br>Thank you for being you. 💕</p>
+                <div>
+                    <span class="cake-emoji">🎂</span>
+                    <span class="kiss-emoji">💋</span>
+                    <span class="party-emoji">🎉</span>
+                    <span class="kiss-emoji">😘</span>
+                    <span class="cake-emoji">🎈</span>
+                </div>
             </div>
         </div>
     </div>
@@ -572,6 +492,46 @@
     </div>
 
     <script>
+        // List of your 17 images for random background
+        const bgImages = [
+            'images/image1.jpg', 'images/image2.jpg', 'images/image3.jpg',
+            'images/image4.jpg', 'images/image5.jpg', 'images/image6.jpg',
+            'images/image7.jpg', 'images/image8.jpg', 'images/image9.jpg',
+            'images/image10.jpg', 'images/image11.jpg', 'images/image12.jpg',
+            'images/image13.jpg', 'images/image14.jpg', 'images/image15.jpg',
+            'images/image16.jpg', 'images/image17.jpg'
+        ];
+
+        // Set random background for each slide
+        function setRandomBackgrounds() {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                const bgDiv = slide.querySelector('.slide-bg');
+                if (bgDiv) {
+                    // Use different random image for each slide
+                    const randomIndex = Math.floor(Math.random() * bgImages.length);
+                    bgDiv.style.backgroundImage = `url('${bgImages[randomIndex]}')`;
+                    bgDiv.style.backgroundSize = 'cover';
+                    bgDiv.style.backgroundPosition = 'center';
+                }
+            });
+        }
+
+        // Floating hearts generator
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = ['❤️', '💖', '💗', '💓', '💕', '💋', '😘'][Math.floor(Math.random() * 7)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.fontSize = (Math.random() * 1.5 + 0.8) + 'rem';
+            heart.style.animationDuration = Math.random() * 6 + 5 + 's';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 10000);
+        }
+        setInterval(createFloatingHeart, 800);
+
+        // Petal generator
         function createPetal() {
             const petalContainer = document.getElementById('petals');
             const petal = document.createElement('div');
@@ -607,10 +567,10 @@
 
         function burstHearts() {
             const burstDiv = document.getElementById('heart-burst');
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 25; i++) {
                 const heart = document.createElement('div');
                 heart.classList.add('heart-particle');
-                heart.innerHTML = ['❤️', '💖', '💗', '💓'][Math.floor(Math.random() * 4)];
+                heart.innerHTML = ['❤️', '💖', '💗', '💓', '💋', '😘'][Math.floor(Math.random() * 6)];
                 const angle = Math.random() * Math.PI * 2;
                 const distance = 80 + Math.random() * 140;
                 const tx = Math.cos(angle) * distance;
@@ -650,12 +610,13 @@
             }
         };
 
-        window.startShow = function () {
+        document.getElementById('startBtn').onclick = function () {
             const intro = document.getElementById('intro');
             intro.style.opacity = '0';
             setTimeout(() => {
                 intro.style.display = 'none';
                 document.getElementById('show').style.display = 'block';
+                setRandomBackgrounds(); // Set random backgrounds when slideshow starts
                 currentSlide = 0;
                 updateSlides();
             }, 1000);
